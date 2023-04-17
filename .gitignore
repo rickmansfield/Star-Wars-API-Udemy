@@ -1,0 +1,23 @@
+# Node.js files
+node_modules/
+npm-debug.log
+
+# Build files
+build/
+dist/
+
+# IDE files
+.vscode/
+.idea/
+
+# Other files
+.DS_Store
+Thumbs.db
+This .gitignore file includes some common files and directories that you may want to ignore in a React project. You can customize this file based on your project's needs.
+
+Once you've added a .gitignore file to your project, Git will automatically ignore the files and directories listed in the file, and they will not be included in your commits or pushed to your repository.
+
+
+
+
+
