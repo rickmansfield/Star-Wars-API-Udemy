@@ -19,11 +19,12 @@ function App() {
   //   },
   // ];
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function fetchMoviesHander() {
+    setIsLoading(true);
     const response = await fetch("https://swapi.dev/api/films/");
     const data = await response.json();
-
     const transformedMovies = data.results.map((movieData) => {
       return {
         id: movieData.episode_id,
@@ -33,6 +34,7 @@ function App() {
       };
     });
     setMovies(transformedMovies);
+    setIsLoading(false);
   }
 
   const date = new Date().toLocaleDateString("en-US", {
@@ -47,7 +49,8 @@ function App() {
         <button onClick={fetchMoviesHander}>Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={movies} />
+        {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
+        {isLoading && <p>Loading...</p>}
         <div className="date">Current Date {date}</div>
       </section>
     </React.Fragment>
