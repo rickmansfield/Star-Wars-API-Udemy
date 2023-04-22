@@ -1,28 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import MoviesList from "./components/MoviesList";
 import "./App.css";
 
 function App() {
-  // const dummyMovies = [
-  //   {
-  //     id: 1,
-  //     title: 'Some Dummy Movie 1',
-  //     openingText: 'This is the opening text of the movie',
-  //     releaseDate: '2021-05-18',
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Some Dummy Movie 2',
-  //     openingText: 'This is the second opening text of the movie',
-  //     releaseDate: '2021-05-19',
-  //   },
-  // ];
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  async function fetchMoviesHander() {
+  // I'm using useCallback to avoid infinite loop. useCallback will make sure that the function is not recreated when the component re-renders.it basically memoizes or caches the function for single use. By doing this the fuction is only recreated when the dependencies change. If we don't use useCallback, the function is created every time the component is re-rendered, which can cause performance issues.
+
+  //summary: the useEffect ensures 'fectMovieHandler' is only called once on load and useCallbcak caches the function for the single use
+  const fetchMoviesHander = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
@@ -45,7 +34,11 @@ function App() {
       setError(error.message);
     }
     setIsLoading(false);
-  }
+  }, []);
+
+  useEffect(() => {
+    fetchMoviesHander();
+  }, [fetchMoviesHander]);
 
   let content = <p>Found no movies.</p>;
   if (movies.length > 0) {
