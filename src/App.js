@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import MoviesList from './components/MoviesList';
-import './App.css';
+import MoviesList from "./components/MoviesList";
+import "./App.css";
 
 function App() {
   // const dummyMovies = [
@@ -20,26 +20,25 @@ function App() {
   // ];
   const [movies, setMovies] = useState([]);
 
- async function fetchMoviesHander() {
-   const response = await fetch('https://swapi.dev/api/films/')
-   const data = await response.json();
-     
-        const transformedMovies = data.results.map((movieData) => {
-          return {
-            id: movieData.episode_id,
-            title: movieData.title,
-            openingText: movieData.opening_crawl,
-            releaseDate: movieData.release_date,
-          };
-        });
-        setMovies(transformedMovies);
-    
+  async function fetchMoviesHander() {
+    const response = await fetch("https://swapi.dev/api/films/");
+    const data = await response.json();
+
+    const transformedMovies = data.results.map((movieData) => {
+      return {
+        id: movieData.episode_id,
+        title: movieData.title,
+        openingText: movieData.opening_crawl,
+        releaseDate: movieData.release_date,
+      };
+    });
+    setMovies(transformedMovies);
   }
 
-  const date = new Date().toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const date = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
   return (
@@ -49,7 +48,7 @@ function App() {
       </section>
       <section>
         <MoviesList movies={movies} />
-        <div className='date'>Current Date { date }</div>
+        <div className="date">Current Date {date}</div>
       </section>
     </React.Fragment>
   );
