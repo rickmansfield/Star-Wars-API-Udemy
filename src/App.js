@@ -7,7 +7,7 @@ function App() {
   const dummyMovies = [
     {
       id: 1,
-      title: 'Some Dummy Movie',
+      title: 'Some Dummy Movie 1',
       openingText: 'This is the opening text of the movie',
       releaseDate: '2021-05-18',
     },
@@ -19,6 +19,12 @@ function App() {
     },
   ];
 
+  const date = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
   return (
     <React.Fragment>
       <section>
@@ -26,6 +32,7 @@ function App() {
       </section>
       <section>
         <MoviesList movies={dummyMovies} />
+        <div className='date'>Current Date { date }</div>
       </section>
     </React.Fragment>
   );
