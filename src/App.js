@@ -20,12 +20,10 @@ function App() {
   // ];
   const [movies, setMovies] = useState([]);
 
-  function fetchMoviesHander() {
-    fetch('https://swapi.dev/api/films/')
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
+ async function fetchMoviesHander() {
+   const response = await fetch('https://swapi.dev/api/films/')
+   const data = await response.json();
+     
         const transformedMovies = data.results.map((movieData) => {
           return {
             id: movieData.episode_id,
@@ -35,7 +33,7 @@ function App() {
           };
         });
         setMovies(transformedMovies);
-      });
+    
   }
 
   const date = new Date().toLocaleDateString('en-US', {
