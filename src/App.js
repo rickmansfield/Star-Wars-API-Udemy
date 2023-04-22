@@ -70,9 +70,7 @@ function App() {
         <button onClick={fetchMoviesHander}>Fetch Movies</button>
         <div className="date">Current Date {date}</div>
       </section>
-      <section>
-       {content}
-      </section>
+      <section>{content}</section>
     </React.Fragment>
   );
 }
