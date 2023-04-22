@@ -47,11 +47,12 @@ function App() {
     <React.Fragment>
       <section>
         <button onClick={fetchMoviesHander}>Fetch Movies</button>
+        <div className="date">Current Date {date}</div>
       </section>
       <section>
         {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
+        {!isLoading && movies.length === 0 && <p>No Movies Found</p>}
         {isLoading && <p>Loading...</p>}
-        <div className="date">Current Date {date}</div>
       </section>
     </React.Fragment>
   );
