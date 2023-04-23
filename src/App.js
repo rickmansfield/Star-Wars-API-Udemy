@@ -37,6 +37,8 @@ function App() {
     setIsLoading(false);
   }, []);
 
+  // to learn to build a post request to add a movie to the database, see https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/25599826#overview videos 181-182
+
   useEffect(() => {
     fetchMoviesHander();
   }, [fetchMoviesHander]);
