@@ -17,7 +17,8 @@ function App() {
     setError(null);
     try {
       const response = await fetch(
-        "https://react-http-a689d-default-rtdb.firebaseio.com/movies.json"
+        // "https://react-http-a689d-default-rtdb.firebaseio.com/movies.json"
+        "https://react-httpv2-a642c-default-rtdb.firebaseio.com/movies.json"
       );
       if (!response.ok) {
         throw new Error("Something went wrong!");
@@ -48,14 +49,14 @@ function App() {
     setIsLoading(false);
   }, []);
 
-  // to learn to build a post request to add a movie to the database, see https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/25599826#overview videos 181-182
+  // to learn to build a post request to add a movie to the database, see https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/25599822#overview videos 215-216
 
   useEffect(() => {
     fetchMoviesHander();
   }, [fetchMoviesHander]);
 
   async function addMovieHandler(movie) {
-    const response = await fetch("https://react-http-a689d-default-rtdb.firebaseio.com/movies.json", {
+    const response = await fetch("https://react-httpv2-a642c-default-rtdb.firebaseio.com/movies.json", {
       method: "POST",
       body: JSON.stringify(movie),
       headers: {
